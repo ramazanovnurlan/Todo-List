@@ -1,0 +1,9 @@
+@import "./variables.module";
+@import "./mixins.module";
+@import "./global.module";
+
+@import "../../containers/Contact/contact.module";
+@import "../../containers/NewContact/newContact.module";
+@import "../../containers/EditContact/editContact.module";
+
+@import "../../components/Header/header.module";
