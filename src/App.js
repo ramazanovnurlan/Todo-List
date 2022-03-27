@@ -1,6 +1,6 @@
 import "./App.css";
 import "../src/assets/scss/style.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import Contact from "./containers/Contact/Contact";
 import NewContact from "./containers/NewContact/NewContact";
@@ -13,6 +13,7 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
+            <Route path="/" element={<Navigate replace to="/contacts" />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="/contacts/new" element={<NewContact />} />
             <Route path="/contacts/edit/:id" element={<EditContact />} />

@@ -29,21 +29,17 @@ const Contact = () => {
   };
 
   let contactDetail;
-  const contactId = localStorage.getItem("id");
-  contactDetail = contacts.find((x) => x.id == contactId);
-  objDetail.id = contactDetail.id;
-  objDetail.name = contactDetail.name;
-  objDetail.surname = contactDetail.surname;
-  objDetail.fatherName = contactDetail.fatherName;
-  objDetail.email = contactDetail.email;
-  objDetail.additionalInfo = contactDetail.additionalInfo;
-  objDetail.specialty = contactDetail.specialty;
-  objDetail.gender = contactDetail.gender;
+  if (contacts.length != 0) {
+  }
 
   const showModal = (id) => {
-    localStorage.setItem("id", id);
+    contactDetail = contacts.find((x) => x.id == id);
+    localStorage.setItem("contactDetail", JSON.stringify(contactDetail));
+    contactDetail = JSON.parse(localStorage.getItem("contactDetail"));
+
     setIsModalVisible(true);
   };
+
   const handleDetailOk = () => {
     setIsModalVisible(false);
   };
@@ -135,13 +131,49 @@ const Contact = () => {
               onOk={handleDetailOk}
               onCancel={handleDetailCancel}
             >
-              <p><b>Id:</b> {objDetail.id}</p>
-              <p><b>Name:</b> {objDetail.name}</p>
-              <p><b>Surname:</b> {objDetail.surname}</p>
-              <p><b>Father Name:</b> {objDetail.fatherName}</p>
-              <p><b>Additional Information:</b> {objDetail.additionalInfo}</p>
-              <p><b>Specialty:</b> {objDetail.specialty}</p>
-              <p><b>Gender:</b> {objDetail.gender}</p>
+              <p>
+                <b>Id:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail")).id
+                  : ""}
+              </p>
+              <p>
+                <b>Name:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail")).name
+                  : ""}
+              </p>
+              <p>
+                <b>Surname:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail")).surname
+                  : ""}
+              </p>
+              <p>
+                <b>Father Name:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail")).fatherName
+                  : ""}
+              </p>
+              <p>
+                <b>Additional Information:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail"))
+                      .additionalInfo
+                  : ""}
+              </p>
+              <p>
+                <b>Specialty:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail")).specialty
+                  : ""}
+              </p>
+              <p>
+                <b>Gender:</b>
+                {JSON.parse(localStorage.getItem("contactDetail")) != null
+                  ? JSON.parse(localStorage.getItem("contactDetail")).gender
+                  : ""}
+              </p>
             </Modal>
             <Button onClick={(e) => navigate(`/contacts/edit/${contact.id}`)}>
               <EditOutlined style={{ color: "#2bcbba" }} />
